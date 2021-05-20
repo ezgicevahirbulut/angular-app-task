@@ -1,0 +1,22 @@
+<div class="tasks-wrapper">
+
+    <div class="container">
+
+        <div class="tasks-list">
+
+            <a [routerLink]="[task.id]" *ngFor="let task of tasks">
+                <app-task-card [task]="task"></app-task-card>
+            </a>
+            
+        </div>
+
+        <div class="btns-container btns-centered">
+            <a routerLink="add" class="btn add-btn">
+                <i class="material-icons-outlined">add</i>
+                Add
+            </a>
+        </div>
+        
+    </div>
+    
+</div>
