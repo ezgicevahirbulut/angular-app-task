@@ -13,12 +13,21 @@
         </div>
 
         <div class="form-field">
+            
+            <select name="task" id="tasks">
+                <option value="new">New Task</option>
+                <option value="ınprog">Inprogress</option>
+                <option value="finish">Done</option>
+            </select>
+        </div>
+
+        <div class="form-field">
             <textarea class="textarea" [ngModel]="task.content" name="content" placeholder="Enter task content..."></textarea>
         </div>
 
         <div class="btns-container">
             <a routerLink="../" class="btn">Cancel</a>
-            <button type="button" class="btn" (click)="deleteNote()">Delete</button>
+            <button type="button" class="btn" (click)="deleteTask()">Delete</button>
 
             <button class="btn align-end">Save</button>
         </div>

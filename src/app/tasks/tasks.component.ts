@@ -8,11 +8,11 @@ import { TaskService } from '../shared/task.service';
 })
 export class TasksComponent implements OnInit {
 
-  tasks:Tasks[]
+  task:Tasks[]
   constructor(private taskService:TaskService) { }
 
   ngOnInit(): void {
-    this.tasks=this.taskService.getTasks()
+    this.task=this.taskService.getTasks()
 
   }
 

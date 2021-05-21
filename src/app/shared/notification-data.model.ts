@@ -1,4 +1,4 @@
 export class NotificationData {
-    text: string
-    duration: number
+    text!: string
+    duration!: number
 }

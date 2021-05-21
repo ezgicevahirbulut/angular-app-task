@@ -7,6 +7,7 @@ import { UsersService } from '../shared/users.service';
   templateUrl: './user-manage.component.html',
   styleUrls: ['./user-manage.component.scss']
 })
+
 export class UserManageComponent implements OnInit {
 
   user:Users[]

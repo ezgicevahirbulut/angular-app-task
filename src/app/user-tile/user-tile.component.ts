@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Users } from '../shared/users.model';
 
+
 @Component({
   selector: 'app-user-tile',
   templateUrl: './user-tile.component.html',

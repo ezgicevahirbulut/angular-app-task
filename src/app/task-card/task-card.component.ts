@@ -8,7 +8,8 @@ import { Tasks } from '../shared/task.model';
 })
 export class TaskCardComponent implements OnInit {
 
-  @Input() task:Tasks
+  @Input()
+  task!: Tasks;
 
   constructor() { }
 

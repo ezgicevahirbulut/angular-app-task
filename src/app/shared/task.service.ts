@@ -16,8 +16,7 @@ export class TaskService implements OnDestroy {
   constructor() { 
     this.loadState()
 
-    this.storageListenSub = fromEvent(window, 'storage')
-      .subscribe((event: StorageEvent) => {
+    this.storageListenSub = fromEvent(window, 'storage').subscribe((event: StorageEvent) => {
         if (event.key === 'tasks') this.loadState()
       })
   }
@@ -35,7 +34,7 @@ export class TaskService implements OnDestroy {
   }
 
   addTask(task:Task){
-    this.tasks.push(task)
+    this.tasks.push()
 
     this.saveState()
   }
@@ -61,9 +60,8 @@ export class TaskService implements OnDestroy {
   loadState() {
     try {
       const tasksInStorage = JSON.parse(localStorage.getItem('tasks'))
-      // if (!notesInStorage) return
-
-      this.tasks.length = 0 // clear the notes array (while keeping the reference)
+      
+      this.tasks.length = 0 
       this.tasks.push(...tasksInStorage)
 
     } catch (e) {

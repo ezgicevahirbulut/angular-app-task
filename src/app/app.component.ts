@@ -2,10 +2,9 @@ import { animate, group, query, style, transition, trigger } from '@angular/anim
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Observable, timer } from 'rxjs';
-import { map } from 'rxjs/operators'
+import { map } from 'rxjs/operators';
 
 const baseStyles = style({
-  // display: 'block',
   position: 'absolute',
   top: 0,
   left: 0,
@@ -29,10 +28,7 @@ const baseStyles = style({
           baseStyles
         ], { optional: true }),
 
-        // query(':enter', [
-        //   style({ opacity: 0 })
-        // ], { optional: true }),
-
+       
         group([
           query(':leave', [
             animate('200ms ease-in', style({
@@ -65,9 +61,7 @@ const baseStyles = style({
           baseStyles
         ], { optional: true }),
 
-        // query(':enter', [
-        //   style({ opacity: 0 })
-        // ], { optional: true }),
+        
 
         group([
           query(':leave', [
@@ -93,8 +87,8 @@ const baseStyles = style({
 
       transition('* => secondary', [
         style({
-          position: 'relative',
-          // overflow: 'hidden'
+          position: 'relative'
+          
         }),
 
         query(':enter, :leave', [
@@ -125,7 +119,6 @@ const baseStyles = style({
       transition('secondary => *', [
         style({
           position: 'relative',
-          // overflow: 'hidden'
         }),
 
         query(':enter, :leave', [
@@ -183,9 +176,9 @@ export class AppComponent implements OnInit {
     'https://images.unsplash.com/photo-1434907652076-85f8401482c3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1920'
   ]
 
-  loadingBGImage: boolean
+  loadingBGImage: boolean = false;
 
-  dateTime: Observable<Date>
+  dateTime!: Observable<Date>;
 
   ngOnInit() {
     this.dateTime = timer(0, 1000).pipe(
@@ -212,7 +205,6 @@ export class AppComponent implements OnInit {
 
     const alreadyGot = this.backgrounds.includes(result.url)
     if (alreadyGot) {
-      // this is the same image as we currently have, so re-run the function
       return this.changeBGImage()
     }
 
@@ -220,7 +212,6 @@ export class AppComponent implements OnInit {
   }
 
   onBGImageLoad(imgEvent: Event) {
-    // BG image has loaded, now remove the old BG image from the backgrounds array
     const imgElement = imgEvent.target as HTMLImageElement
     const src = imgElement.src
     this.backgrounds = this.backgrounds.filter(b => b === src)

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute,ParamMap, Router } from '@angular/router';
-import { NotificationService } from '../shared/notification.service';
+import { ActivatedRoute, ParamMap , Router } from '@angular/router';
 import { Tasks } from '../shared/task.model';
 import { TaskService } from '../shared/task.service';
+import { NotificationService } from '../shared/notification.service';
+
 
 @Component({
   selector: 'app-task-edit',
@@ -13,6 +14,7 @@ import { TaskService } from '../shared/task.service';
 export class TaskEditComponent implements OnInit {
 
   task:Tasks
+
   constructor(
     private route:ActivatedRoute,
     private taskService:TaskService,
@@ -27,11 +29,14 @@ export class TaskEditComponent implements OnInit {
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       const idParam = paramMap.get('id')
       this.task = this.taskService.getTask(idParam)
-  }
-}
-  
+     
+  })
+
+ }
+ 
+ 
   onFormSubmit(form: NgForm) {
-    this.taskService.updateNote(this.task.id, form.value)
+    this.taskService.updateTask(this.task.id, form.value)
     this.router.navigateByUrl("/tasks")
 
     this.notificationService.show('Task updated!')
