@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Tasks } from '../shared/task.model';
 import { TaskService } from '../shared/task.service';
 
@@ -7,13 +8,16 @@ import { TaskService } from '../shared/task.service';
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.scss']
 })
-export class TasksComponent implements OnInit {
+export class TasksComponent implements OnInit,OnDestroy {
 
-  task:Tasks[] | undefined
+  task: Observable<{tasks:Tasks[]}>;
 
-  constructor(private taskService:TaskService) { }
+  constructor(private taskService:TaskService,
+      private task:Tasks<{task:{tasks:Tasks[]}}>
+    ) { }
 
   ngOnInit(): void {
+    this.tasks=this.task.select('tasks')
     this.task=this.taskService.getTasks()
 
   }

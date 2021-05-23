@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Users } from '../shared/users.model';
 import { UsersService } from '../shared/users.service';
 
@@ -7,16 +8,18 @@ import { UsersService } from '../shared/users.service';
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit,OnDestroy {
 
 
-  users: Users[] = [];
+
+  user: Observable<{users:Users[]}>;
 
   constructor(private userService:UsersService) { }
 
   ngOnInit(): void {
+    this.users=this.users.select('users')
 
-    this.users = this.userService.getUsers()
+    this.user = this.userService.getUsers()
 
   }
 

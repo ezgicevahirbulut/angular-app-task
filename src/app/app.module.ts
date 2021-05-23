@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-
+import {StoreModule} from '@ngrx/store';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,7 +18,7 @@ import { TaskCardComponent } from './task-card/task-card.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { UserManageComponent } from './user-manage/user-manage.component';
 
-import { fromEvent, Observable } from 'rxjs';
+import { taskManageReducer } from './tasks.reducer';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,8 @@ import { fromEvent, Observable } from 'rxjs';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    StoreModule.forRoot({tasks:taskManageReducer})
   ],
   providers: [],
   bootstrap: [AppComponent]

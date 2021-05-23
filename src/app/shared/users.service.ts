@@ -1,11 +1,11 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable, OnDestroy, OnInit } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 import { Users } from './users.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService implements OnDestroy{
+export class UsersService implements OnDestroy,OnInit{
 
   users:Users[]=[]
 
