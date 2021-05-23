@@ -1,12 +1,14 @@
-import { Injectable, OnDestroy } from '@angular/core';
-import { fromEvent, Subscription } from 'rxjs';
+import { Injectable, OnInit } from '@angular/core';
+import { fromEvent, Subscription, Observable } from 'rxjs';
 import { Tasks } from './task.model';
+
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class TaskService implements OnDestroy {
+
+export class TaskService {
 
   tasks:Tasks[]=[]
 
@@ -17,7 +19,7 @@ export class TaskService implements OnDestroy {
     this.loadState()
 
     this.storageListenSub = fromEvent(window, 'storage').subscribe((event: StorageEvent) => {
-        if (event.key === 'tasks') this.loadState()
+        if (event.key === 'task') this.loadState()
       })
   }
 
@@ -59,7 +61,7 @@ export class TaskService implements OnDestroy {
 
   loadState() {
     try {
-      const tasksInStorage = JSON.parse(localStorage.getItem('tasks'))
+      const tasksInStorage = JSON.parse(localStorage.getItem('task'))
       
       this.tasks.length = 0 
       this.tasks.push(...tasksInStorage)

@@ -11,6 +11,7 @@ import { NotificationService } from '../shared/notification.service';
   templateUrl: './add-task.component.html',
   styleUrls: ['./add-task.component.scss']
 })
+
 export class AddTaskComponent implements OnInit {
 
   showValidationErrors: boolean = false; 

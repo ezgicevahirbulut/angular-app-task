@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Tasks } from '../shared/task.model';
 import { TaskService } from '../shared/task.service';
 
 @Component({
@@ -8,7 +9,8 @@ import { TaskService } from '../shared/task.service';
 })
 export class TasksComponent implements OnInit {
 
-  task:Tasks[]
+  task:Tasks[] | undefined
+
   constructor(private taskService:TaskService) { }
 
   ngOnInit(): void {

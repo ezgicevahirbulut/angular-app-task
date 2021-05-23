@@ -13,11 +13,12 @@ export class UsersService implements OnDestroy{
 
   constructor() {
 
+    
     this.loadState()
 
     this.storageListenSub = fromEvent(window, 'storage')
       .subscribe((event: StorageEvent) => {
-        if (event.key === 'users') this.loadState()
+        if (event.key === 'user') this.loadState()
       })
    }
 
@@ -34,7 +35,7 @@ export class UsersService implements OnDestroy{
   }
 
   addUsers(user: Users) {
-    this.users.push(this.user)
+    this.users.push(user)
 
     this.saveState()
   }
@@ -59,15 +60,15 @@ export class UsersService implements OnDestroy{
 
   loadState() {
     try {
-      const bookmarksInStorage = JSON.parse(localStorage.getItem('users'), (key, value) => {
-        if (key == 'mail') return new URL(value)
+      const usersInStorage = JSON.parse(localStorage.getItem('user'), (key, value) => {
+        if (key == 'mail') return new value
         return value
       })
 
-      this.users.length = 0 // clear the bookmarks array (while keeping the reference)
-      this.users.push(...bookmarksInStorage)
+      this.users.length = 0 
+      this.users.push(...usersInStorage)
     } catch (e) {
-      console.log('There was an error retrieving the bookmarks from localStorage')
+      console.log('There was an error retrieving the users from localStorage')
       console.log(e)
     }
   }

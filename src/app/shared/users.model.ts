@@ -3,13 +3,13 @@ import { v4 as uuidv4 } from 'uuid'
 export class Users {
     id: string
     name: string
-    //url: URL
+    mail:string | undefined
+   
 
     constructor(name: string, url: string) {
         this.id = uuidv4()
-        //this.url = new URL(url)
-
-       // if (!name) name = this.url.hostname
+        
         this.name = name
+        this.mail = this.mail
     }
 }

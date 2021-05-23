@@ -9,6 +9,7 @@ import { UserManageComponent } from './user-manage/user-manage.component';
 import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
+  
   {path:'users',component:UsersComponent, data:{tab:1}},
   {path:'users/add',component:AddUserComponent},
   {path:'users/manage',component:UserManageComponent,children:[

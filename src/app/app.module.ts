@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { FormsModule } from '@angular/forms';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TabsComponent } from './tabs/tabs.component';
@@ -15,6 +17,8 @@ import { UserTileComponent } from './user-tile/user-tile.component';
 import { TaskCardComponent } from './task-card/task-card.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import { UserManageComponent } from './user-manage/user-manage.component';
+
+import { fromEvent, Observable } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,8 @@ import { UserManageComponent } from './user-manage/user-manage.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
