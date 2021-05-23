@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable, OnDestroy, OnInit } from '@angular/core';
 import { fromEvent, Subscription, Observable } from 'rxjs';
 import { Tasks } from './task.model';
 
@@ -8,7 +8,7 @@ import { Tasks } from './task.model';
   providedIn: 'root'
 })
 
-export class TaskService {
+export class TaskService implements OnDestroy {
 
   tasks:Tasks[]=[]
 
@@ -17,7 +17,7 @@ export class TaskService {
 
   constructor() { 
     this.loadState()
-
+ 
     this.storageListenSub = fromEvent(window, 'storage').subscribe((event: StorageEvent) => {
         if (event.key === 'task') this.loadState()
       })
@@ -35,7 +35,7 @@ export class TaskService {
     return this.tasks.find(n=> n.id === id)
   }
 
-  addTask(task:Task){
+  addTask(tasks:Task){
     this.tasks.push()
 
     this.saveState()

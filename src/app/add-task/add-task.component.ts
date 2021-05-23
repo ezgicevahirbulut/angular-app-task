@@ -33,7 +33,7 @@ export class AddTaskComponent implements OnInit {
     
     const task = new Tasks(form.value.title, form.value.content)
 
-    this.taskService.addTask(task)
+    this.taskService.addTask(tasks)
     this.router.navigateByUrl("/tasks")
     this.notificationService.show('Created Task')
   }

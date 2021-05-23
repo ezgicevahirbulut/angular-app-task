@@ -12,7 +12,7 @@ import { UsersService } from '../shared/users.service';
 })
 export class EditUserComponent implements OnInit {
 
-  user:Users
+  users!: Users;
 
   constructor(
     private userService:UsersService,
@@ -24,8 +24,8 @@ export class EditUserComponent implements OnInit {
   ngOnInit(): void {
 
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
-      const taskId = paramMap.get('id')
-      this.user = this.userService.getUser(userId)
+      const userId = paramMap.get('id')
+      this.users = this.userService.getUser(userId)
     })
   }
 
@@ -33,7 +33,7 @@ export class EditUserComponent implements OnInit {
   onFormSubmit(form: NgForm) {
     const { name, mail } = form.value
 
-    this.userService.updateUsers(this.user.id, {
+    this.userService.updateUsers(this.users.id, {
       name,
       mail: string
     })
@@ -42,7 +42,7 @@ export class EditUserComponent implements OnInit {
   }
 
   delete() {
-    this.userService.deleteUser(this.user.id)
+    this.userService.deleteUser(this.users.id)
     this.router.navigate(['../'], { relativeTo: this.route })
 
     this.notificationService.show('Deleted User')

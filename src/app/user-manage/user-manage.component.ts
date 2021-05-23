@@ -10,7 +10,7 @@ import { UsersService } from '../shared/users.service';
 
 export class UserManageComponent implements OnInit {
 
-  user:Users[]
+  user:Users[] 
 
   constructor(private userService:UsersService) { }
 
