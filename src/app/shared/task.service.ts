@@ -1,5 +1,4 @@
 import { Injectable, OnDestroy, OnInit } from '@angular/core';
-import { fromEvent, Subscription, Observable } from 'rxjs';
 import { Tasks } from './task.model';
 
 
@@ -12,19 +11,13 @@ export class TaskService implements OnDestroy {
 
   tasks:Tasks[]=[]
 
-  storageListenSub: Subscription
 
 
   constructor() { 
-    this.loadState()
- 
-    this.storageListenSub = fromEvent(window, 'storage').subscribe((event: StorageEvent) => {
-        if (event.key === 'task') this.loadState()
-      })
+  
   }
 
   ngOnDestroy() {
-    if (this.storageListenSub) this.storageListenSub.unsubscribe()
   }
 
   getTasks(){
@@ -38,7 +31,6 @@ export class TaskService implements OnDestroy {
   addTask(tasks:Task){
     this.tasks.push()
 
-    this.saveState()
   }
 
   updateTask(id:string,updatedFields:Partial<Task>){
@@ -52,24 +44,7 @@ export class TaskService implements OnDestroy {
     
     this.tasks.splice(taskIndex,1)
 
-    this.saveState()
-  }
-
-  saveState() {
-    localStorage.setItem('tasks', JSON.stringify(this.tasks))
-  }
-
-  loadState() {
-    try {
-      const tasksInStorage = JSON.parse(localStorage.getItem('task'))
-      
-      this.tasks.length = 0 
-      this.tasks.push(...tasksInStorage)
-
-    } catch (e) {
-      console.log('There was an error retrieving the tasks from localStorage')
-      console.log(e)
-    }
+    
   }
 
 }
